@@ -32,6 +32,7 @@ var count_working_period := 0:
 
 func _ready():
 	load_settings()
+	time_left = work_duration
 	update_time_label()
 	timer.wait_time = 1.0
 	timer.timeout.connect(_on_timer_timeout)
@@ -73,10 +74,12 @@ func _on_period_complete():
 		start_pause_button.text = "Start Break"
 		count_working_period += 1
 		save_settings()
+		send_notify("Pomodoro complitied!", "Make break")
 	else:
 		time_left = work_duration
 		is_work_period = true
 		start_pause_button.text = "Start Work"
+		send_notify("Break finised!", "Start work")
 	update_time_label()
 	$AudioStreamPlayer.play()
 
@@ -145,3 +148,8 @@ func load_settings() -> void:
 func _on_top_check_box_toggled(toggled_on: bool) -> void:
 	top = toggled_on
 	save_settings()
+
+
+func send_notify(title:String="", message:String="") -> void:
+	if OS.get_name() == 'Linux':
+		OS.execute('notify-send', ['-a', ProjectSettings.get_setting("application/config/name"), title, message])

@@ -16,6 +16,7 @@ config/features=PackedStringArray("4.4", "GL Compatibility")
 run/low_processor_mode=true
 boot_splash/image="uid://digujengm5xon"
 config/icon="uid://digujengm5xon"
+config/tags=PackedStringArray("tools")
 
 [display]
 
