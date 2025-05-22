@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://tat6rbhhlv7h"]
+[gd_scene load_steps=4 format=3 uid="uid://tat6rbhhlv7h"]
 
 [ext_resource type="Script" uid="uid://fx6v3akelxsj" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="AudioStream" uid="uid://3vai0gt2t5be" path="res://assets/72125__kizilsungur__sweetalertsound1.wav" id="2_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://b6b2w5irlhc2" path="res://assets/cog.png" id="2_h2yge"]
 
 [node name="Main" type="Control" node_paths=PackedStringArray("timer", "time_label", "start_pause_button", "reset_button")]
 layout_mode = 3
@@ -46,6 +47,8 @@ text = "0"
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 size_flags_horizontal = 10
+icon = ExtResource("2_h2yge")
+expand_icon = true
 
 [node name="TimeLabel" type="Label" parent="MainPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2

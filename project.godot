@@ -10,9 +10,10 @@ config_version=5
 
 [application]
 
-config/name="Timer"
+config/name="Pomodoro Timer"
 run/main_scene="uid://tat6rbhhlv7h"
 config/features=PackedStringArray("4.4", "GL Compatibility")
+run/low_processor_mode=true
 boot_splash/image="uid://digujengm5xon"
 config/icon="uid://digujengm5xon"
 
@@ -25,3 +26,4 @@ window/size/viewport_height=200
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
