@@ -1,0 +1,158 @@
+[gd_scene load_steps=3 format=3 uid="uid://tat6rbhhlv7h"]
+
+[ext_resource type="Script" uid="uid://fx6v3akelxsj" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="AudioStream" uid="uid://3vai0gt2t5be" path="res://assets/72125__kizilsungur__sweetalertsound1.wav" id="2_0xm2m"]
+
+[node name="Main" type="Control" node_paths=PackedStringArray("timer", "time_label", "start_pause_button", "reset_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ig7tw")
+timer = NodePath("Timer")
+time_label = NodePath("MainPanel/MarginContainer/VBoxContainer/TimeLabel")
+start_pause_button = NodePath("MainPanel/MarginContainer/VBoxContainer/HBoxContainer/StartPauseButton")
+reset_button = NodePath("MainPanel/MarginContainer/VBoxContainer/HBoxContainer/ResetButton")
+
+[node name="MainPanel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MainPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MainPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="CountLabel" type="Label" parent="MainPanel/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "0"
+
+[node name="SettingsButton" type="Button" parent="MainPanel/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="TimeLabel" type="Label" parent="MainPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+size_flags_stretch_ratio = 2.51
+theme_override_font_sizes/font_size = 40
+text = "00:00"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="StartPauseButton" type="Button" parent="MainPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Старт"
+
+[node name="ResetButton" type="Button" parent="MainPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Reset"
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="SettingsPanel" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="SettingsPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SettingsPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "working time"
+
+[node name="WorkTimeEdit" type="SpinBox" parent="SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+value = 25.0
+suffix = "min"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="SettingsPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "rest time"
+
+[node name="RestWorkEdit" type="SpinBox" parent="SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 10
+value = 5.0
+suffix = "min"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="SettingsPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "sound"
+
+[node name="HSlider" type="HSlider" parent="SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+value = 70.0
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="SettingsPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+text = "always on top"
+
+[node name="TopCheckBox" type="CheckBox" parent="SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="SettingsPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "back"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_0xm2m")
+
+[connection signal="pressed" from="MainPanel/MarginContainer/VBoxContainer/HBoxContainer2/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="value_changed" from="SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer/WorkTimeEdit" to="." method="_on_work_time_edit_value_changed"]
+[connection signal="value_changed" from="SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer2/RestWorkEdit" to="." method="_on_rest_work_edit_value_changed"]
+[connection signal="value_changed" from="SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer3/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="toggled" from="SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer5/TopCheckBox" to="." method="_on_top_check_box_toggled"]
+[connection signal="pressed" from="SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer4/BackButton" to="." method="_on_back_button_pressed"]
