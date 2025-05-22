@@ -1,5 +1,7 @@
 # Pomodoro Timer with Godot
 
+![pomodoro timer icon](assets/PomodoroTimer.png)
+
 A simple and customizable Pomodoro timer built with the Godot Engine. This project helps you manage your work sessions and breaks using the Pomodoro Technique.
 
 ## Features

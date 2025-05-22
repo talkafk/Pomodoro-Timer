@@ -151,5 +151,25 @@ func _on_top_check_box_toggled(toggled_on: bool) -> void:
 
 
 func send_notify(title:String="", message:String="") -> void:
+	var path = copy_icon_to_userdir("res://assets/PomodoroTimer.png", "PomodoroTimer.png")
 	if OS.get_name() == 'Linux':
-		OS.execute('notify-send', ['-a', ProjectSettings.get_setting("application/config/name"), title, message])
+		OS.execute('notify-send', ['-a', ProjectSettings.get_setting("application/config/name"), "-i", path, title, message])
+
+
+func copy_icon_to_userdir(res_path: String, file_name: String) -> String:
+	var icon_data = FileAccess.open(res_path, FileAccess.READ)
+	if icon_data == null:
+		push_error("Не удалось открыть " + res_path)
+		return ""
+
+	var dest_path = "user://%s" % file_name
+	var out_file = FileAccess.open(dest_path, FileAccess.WRITE)
+	if out_file == null:
+		push_error("Не удалось создать " + dest_path)
+		return ""
+
+	out_file.store_buffer(icon_data.get_buffer(icon_data.get_length()))
+	out_file.close()
+	icon_data.close()
+
+	return ProjectSettings.globalize_path(dest_path)  # абсолютный путь для notify-send

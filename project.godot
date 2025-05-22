@@ -11,12 +11,12 @@ config_version=5
 [application]
 
 config/name="Pomodoro Timer"
+config/tags=PackedStringArray("tools")
 run/main_scene="uid://tat6rbhhlv7h"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 run/low_processor_mode=true
 boot_splash/image="uid://digujengm5xon"
 config/icon="uid://digujengm5xon"
-config/tags=PackedStringArray("tools")
 
 [display]
 
