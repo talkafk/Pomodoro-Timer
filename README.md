@@ -11,6 +11,8 @@ A simple and customizable Pomodoro timer built with the Godot Engine. This proje
 - Audio alert on session completion ([Sound by KIZILSUNGUR](https://freesound.org/people/KIZILSUNGUR/sounds/72125/))
 - Minimalist UI 
 - Cross-platform
+- Native notifications (Linux, Web)
+
 
 
 ## License
