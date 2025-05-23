@@ -1,21 +1,126 @@
-[gd_scene load_steps=4 format=3 uid="uid://tat6rbhhlv7h"]
+[gd_scene load_steps=20 format=3 uid="uid://tat6rbhhlv7h"]
 
+[ext_resource type="FontFile" uid="uid://b42hlnsectrvn" path="res://assets/FiraCode-Regular.ttf" id="1_1bvp3"]
 [ext_resource type="Script" uid="uid://fx6v3akelxsj" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="AudioStream" uid="uid://3vai0gt2t5be" path="res://assets/72125__kizilsungur__sweetalertsound1.wav" id="2_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://b6b2w5irlhc2" path="res://assets/cog.png" id="2_h2yge"]
 
-[node name="Main" type="Control" node_paths=PackedStringArray("timer", "time_label", "start_pause_button", "reset_button")]
+[sub_resource type="Image" id="Image_1bvp3"]
+data = {
+"data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 115, 255, 255, 255, 29, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 29, 255, 255, 255, 115, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 95, 255, 255, 255, 255, 255, 255, 255, 229, 255, 255, 255, 48, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 48, 255, 255, 255, 229, 255, 255, 255, 255, 255, 255, 255, 95, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 15, 255, 255, 255, 189, 255, 255, 255, 255, 255, 255, 255, 242, 255, 255, 255, 71, 255, 255, 255, 72, 255, 255, 255, 243, 255, 255, 255, 255, 255, 255, 255, 189, 255, 255, 255, 15, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 5, 255, 255, 255, 162, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 162, 255, 255, 255, 5, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 131, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 131, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 100, 255, 255, 255, 100, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
+"format": "RGBA8",
+"height": 8,
+"mipmaps": false,
+"width": 16
+}
+
+[sub_resource type="ImageTexture" id="ImageTexture_lquwl"]
+image = SubResource("Image_1bvp3")
+
+[sub_resource type="Image" id="Image_lquwl"]
+data = {
+"data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 101, 255, 255, 255, 100, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 132, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 132, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 5, 255, 255, 255, 163, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 162, 255, 255, 255, 5, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 15, 255, 255, 255, 189, 255, 255, 255, 255, 255, 255, 255, 242, 255, 255, 255, 70, 255, 255, 255, 71, 255, 255, 255, 242, 255, 255, 255, 255, 255, 255, 255, 189, 255, 255, 255, 15, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 95, 255, 255, 255, 255, 255, 255, 255, 229, 255, 255, 255, 47, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 48, 255, 255, 255, 229, 255, 255, 255, 255, 255, 255, 255, 95, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 115, 255, 255, 255, 29, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 29, 255, 255, 255, 115, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
+"format": "RGBA8",
+"height": 8,
+"mipmaps": false,
+"width": 16
+}
+
+[sub_resource type="ImageTexture" id="ImageTexture_272bh"]
+image = SubResource("Image_lquwl")
+
+[sub_resource type="ImageTexture" id="ImageTexture_5vw27"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kek77"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4c57u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_efxa6"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.225, 0.225, 0.225, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dg77c"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ycdy4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w48qg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vivmo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2cqfq"]
+
+[sub_resource type="Theme" id="Theme_lquwl"]
+Button/fonts/font = ExtResource("1_1bvp3")
+Label/fonts/font = ExtResource("1_1bvp3")
+LineEdit/fonts/font = ExtResource("1_1bvp3")
+SpinBox/colors/down_disabled_icon_modulate = Color(0.875, 0.875, 0.875, 0.5)
+SpinBox/colors/down_hover_icon_modulate = Color(0.95, 0.95, 0.95, 1)
+SpinBox/colors/down_icon_modulate = Color(0.875, 0.875, 0.875, 1)
+SpinBox/colors/down_pressed_icon_modulate = Color(0.95, 0.95, 0.95, 1)
+SpinBox/colors/up_disabled_icon_modulate = Color(0.875, 0.875, 0.875, 0.5)
+SpinBox/colors/up_hover_icon_modulate = Color(0.95, 0.95, 0.95, 1)
+SpinBox/colors/up_icon_modulate = Color(0.875, 0.875, 0.875, 1)
+SpinBox/colors/up_pressed_icon_modulate = Color(0.95, 0.95, 0.95, 1)
+SpinBox/constants/buttons_vertical_separation = 0
+SpinBox/constants/buttons_width = 16
+SpinBox/constants/field_and_buttons_separation = 2
+SpinBox/constants/set_min_buttons_width_from_icons = 1
+SpinBox/icons/down = SubResource("ImageTexture_lquwl")
+SpinBox/icons/down_disabled = SubResource("ImageTexture_lquwl")
+SpinBox/icons/down_hover = SubResource("ImageTexture_lquwl")
+SpinBox/icons/down_pressed = SubResource("ImageTexture_lquwl")
+SpinBox/icons/up = SubResource("ImageTexture_272bh")
+SpinBox/icons/up_disabled = SubResource("ImageTexture_272bh")
+SpinBox/icons/up_hover = SubResource("ImageTexture_272bh")
+SpinBox/icons/up_pressed = SubResource("ImageTexture_272bh")
+SpinBox/icons/updown = SubResource("ImageTexture_5vw27")
+SpinBox/styles/down_background = SubResource("StyleBoxEmpty_kek77")
+SpinBox/styles/down_background_disabled = SubResource("StyleBoxEmpty_4c57u")
+SpinBox/styles/down_background_hovered = SubResource("StyleBoxFlat_efxa6")
+SpinBox/styles/down_background_pressed = SubResource("StyleBoxFlat_dg77c")
+SpinBox/styles/field_and_buttons_separator = SubResource("StyleBoxEmpty_ycdy4")
+SpinBox/styles/up_background = SubResource("StyleBoxEmpty_w48qg")
+SpinBox/styles/up_background_disabled = SubResource("StyleBoxEmpty_vivmo")
+SpinBox/styles/up_background_hovered = SubResource("StyleBoxFlat_efxa6")
+SpinBox/styles/up_background_pressed = SubResource("StyleBoxFlat_dg77c")
+SpinBox/styles/up_down_buttons_separator = SubResource("StyleBoxEmpty_2cqfq")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h2yge"]
+bg_color = Color(0.337255, 0.611765, 0.552941, 1)
+
+[node name="Main" type="Control" node_paths=PackedStringArray("timer", "time_label", "start_pause_button", "reset_button", "work_log_tree")]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_lquwl")
 script = ExtResource("1_ig7tw")
 timer = NodePath("Timer")
 time_label = NodePath("MainPanel/MarginContainer/VBoxContainer/TimeLabel")
 start_pause_button = NodePath("MainPanel/MarginContainer/VBoxContainer/HBoxContainer/StartPauseButton")
 reset_button = NodePath("MainPanel/MarginContainer/VBoxContainer/HBoxContainer/ResetButton")
+work_log_tree = NodePath("TreePanel/Tree")
 
 [node name="MainPanel" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -24,6 +129,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_h2yge")
 
 [node name="MarginContainer" type="MarginContainer" parent="MainPanel"]
 layout_mode = 2
@@ -42,6 +148,13 @@ theme_override_constants/separation = 0
 [node name="CountLabel" type="Label" parent="MainPanel/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 text = "0"
+
+[node name="LogButton" type="Button" parent="MainPanel/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 10
+icon = ExtResource("2_h2yge")
+expand_icon = true
 
 [node name="SettingsButton" type="Button" parent="MainPanel/MarginContainer/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(20, 20)
@@ -65,7 +178,7 @@ size_flags_vertical = 3
 [node name="StartPauseButton" type="Button" parent="MainPanel/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Старт"
+text = "Start"
 
 [node name="ResetButton" type="Button" parent="MainPanel/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -101,6 +214,7 @@ layout_mode = 2
 text = "working time"
 
 [node name="WorkTimeEdit" type="SpinBox" parent="SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 value = 25.0
@@ -114,6 +228,7 @@ layout_mode = 2
 text = "rest time"
 
 [node name="RestWorkEdit" type="SpinBox" parent="SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 value = 5.0
@@ -153,9 +268,29 @@ text = "back"
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_0xm2m")
 
+[node name="TreePanel" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Tree" type="Tree" parent="TreePanel"]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="TreePanel"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "back"
+
+[connection signal="pressed" from="MainPanel/MarginContainer/VBoxContainer/HBoxContainer2/LogButton" to="." method="_on_log_button_pressed"]
 [connection signal="pressed" from="MainPanel/MarginContainer/VBoxContainer/HBoxContainer2/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="value_changed" from="SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer/WorkTimeEdit" to="." method="_on_work_time_edit_value_changed"]
 [connection signal="value_changed" from="SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer2/RestWorkEdit" to="." method="_on_rest_work_edit_value_changed"]
 [connection signal="value_changed" from="SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer3/HSlider" to="." method="_on_h_slider_value_changed"]
 [connection signal="toggled" from="SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer5/TopCheckBox" to="." method="_on_top_check_box_toggled"]
 [connection signal="pressed" from="SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer4/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="TreePanel/BackButton" to="." method="_on_back_button_pressed"]

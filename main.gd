@@ -32,6 +32,8 @@ var count_working_period := 0:
 
 func _ready():
 	load_settings()
+	$SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer/WorkTimeEdit.value = work_duration/60
+	$SettingsPanel/MarginContainer/VBoxContainer/HBoxContainer2/RestWorkEdit.value = break_duration/60
 	time_left = work_duration
 	update_time_label()
 	timer.wait_time = 1.0
@@ -39,8 +41,13 @@ func _ready():
 	start_pause_button.text = "Start"
 	reset_button.pressed.connect(_on_reset_pressed)
 	start_pause_button.pressed.connect(_on_start_pause_pressed)
+	if OS.get_name() == 'Web':
+		request_web_notification_permission()
+
+var start_time
 
 func _on_start_pause_pressed():
+	start_time = Time.get_unix_time_from_system()
 	if is_running:
 		timer.stop()
 		is_running = false
@@ -74,6 +81,7 @@ func _on_period_complete():
 		start_pause_button.text = "Start Break"
 		count_working_period += 1
 		save_settings()
+		log_work_period(work_duration/60)
 		send_notify("Pomodoro complitied!", "Make break")
 	else:
 		time_left = work_duration
@@ -98,15 +106,22 @@ func _on_settings_button_pressed() -> void:
 func _on_back_button_pressed() -> void:
 	$SettingsPanel.hide()
 	$MainPanel.show()
+	$TreePanel.hide()
 
 
 func _on_work_time_edit_value_changed(value: float) -> void:
 	work_duration = float(value) * 60
+	if !is_running && is_work_period:
+		time_left  = work_duration
+		update_time_label()
 	save_settings()
 
 
 func _on_rest_work_edit_value_changed(value: float) -> void:
 	break_duration = float(value) * 60
+	if !is_running && !is_work_period:
+		time_left  = break_duration
+		update_time_label()
 	save_settings()
 
 
@@ -154,6 +169,24 @@ func send_notify(title:String="", message:String="") -> void:
 	var path = copy_icon_to_userdir("res://assets/PomodoroTimer.png", "PomodoroTimer.png")
 	if OS.get_name() == 'Linux':
 		OS.execute('notify-send', ['-a', ProjectSettings.get_setting("application/config/name"), "-i", path, title, message])
+	elif OS.get_name() == 'Web':
+		request_web_notification_permission()
+		send_web_notification(title, message)
+
+
+func send_web_notification(title: String, body: String):
+	JavaScriptBridge.eval('''
+		if (Notification.permission === "granted") {
+			new Notification("%s", { body: "%s" });
+		}
+	''' % [title, body])
+
+func request_web_notification_permission():
+	JavaScriptBridge.eval("""
+		if (Notification.permission !== "granted") {
+			Notification.requestPermission();
+		}
+	""")
 
 
 func copy_icon_to_userdir(res_path: String, file_name: String) -> String:
@@ -173,3 +206,62 @@ func copy_icon_to_userdir(res_path: String, file_name: String) -> String:
 	icon_data.close()
 
 	return ProjectSettings.globalize_path(dest_path)  # абсолютный путь для notify-send
+
+
+const CSV_PATH := "user://work_log.csv"
+
+func log_work_period(duration_minutes: int) -> void:
+	var file_exists = FileAccess.file_exists(CSV_PATH)
+	var file
+	if not file_exists:
+		file = FileAccess.open(CSV_PATH, FileAccess.WRITE)
+		file.store_csv_line(["date","time","duration_minutes"])  # заголовок
+		file.close()
+	var now = Time.get_datetime_dict_from_system()
+	var date = "%04d-%02d-%02d" % [now.year, now.month, now.day]
+	var time = "%02d:%02d" % [now.hour, now.minute]
+	
+	file = FileAccess.open(CSV_PATH, FileAccess.READ)
+	var text :Array = []
+	while not file.eof_reached():
+		var line = file.get_line()
+		if line:
+			text.append(line)
+	file.close()
+	print(text)
+	file = FileAccess.open(CSV_PATH, FileAccess.WRITE)
+	for l in text:
+		file.store_line(l)
+	file.store_csv_line([date, time, duration_minutes])
+	file.close()
+
+@export var work_log_tree: Tree
+
+func load_work_log() -> void:
+	var file = FileAccess.open(CSV_PATH, FileAccess.READ)
+	if file:
+		var root = work_log_tree.create_item()
+		work_log_tree.clear()
+		work_log_tree.set_columns(3)
+		work_log_tree.set_column_titles_visible(true)
+		work_log_tree.set_column_title(0, "Дата")
+		work_log_tree.set_column_title(1, "Время")
+		work_log_tree.set_column_title(2, "Минут")
+		var title := true
+		while not file.eof_reached():
+			var parts = file.get_csv_line()
+			if title:
+				title = false
+				continue  # пропустить заголовок
+			if parts.size() == 3:
+				var item = work_log_tree.create_item()
+				item.set_text(0, parts[0])
+				item.set_text(1, parts[1])
+				item.set_text(2, parts[2])
+		file.close()
+
+
+func _on_log_button_pressed() -> void:
+	load_work_log()
+	$MainPanel.hide()
+	$TreePanel.show()
